@@ -31,6 +31,10 @@
         <service
             android:name=".RecipientService"
             android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".ConnectService"
+            android:enabled="true"
             android:exported="true"></service>
     </application>
 

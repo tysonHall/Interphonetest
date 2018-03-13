@@ -5,7 +5,13 @@ import android.content.Intent;
 import android.os.IBinder;
 
 public class RecipientService extends Service {
+    private static final RecipientService instance = new RecipientService();
     public RecipientService() {
+    }
+
+    public static RecipientService getInstance()
+    {
+        return instance;
     }
 
     @Override
