@@ -9,13 +9,13 @@ import android.os.IBinder;
 
 public class SpeakerService extends Service {
     private static final SpeakerService instance = new SpeakerService();
-    public static int inputMinSize = AudioRecord.getMinBufferSize(8000,AudioFormat.CHANNEL_CONFIGURATION_MONO,AudioFormat.ENCODING_PCM_16BIT);
-    public static AudioRecord audiorec = new AudioRecord(MediaRecorder.AudioSource.MIC, 8000,AudioFormat.CHANNEL_CONFIGURATION_MONO,AudioFormat.ENCODING_PCM_16BIT, inputMinSize);
+    private static ConnectService connectService;
     public SpeakerService() {
     }
 
     public static SpeakerService getInstance()
     {
+        connectService = ConnectService.getInstance();
         return instance;
     }
 
@@ -30,6 +30,7 @@ public class SpeakerService extends Service {
         if(nowstate == 0)
         {
             nowstate = 1;
+            connectService.setState(0);
         }
         return nowstate;
     }
@@ -39,6 +40,7 @@ public class SpeakerService extends Service {
         if(nowstate == 1)
         {
             nowstate = 0;
+            connectService.setState(1);
         }
         return nowstate;
     }
